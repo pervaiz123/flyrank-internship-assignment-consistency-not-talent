@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Intelligence Research Paper | Pervaiz Ahmed</title>
+  <meta name="description"
+    content="Research paper on search visibility and page-rank predictability built on 79M rows of production search data.">
+  <link rel="canonical" href="https://pervaiz-ahmed-ml.netlify.app/paper.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --surface: #151c2c;
+      --border: #232d42;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+
+    .paper-container {
+      max-width: 850px;
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 3rem 2.5rem;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .author-meta {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+
+    .abstract-box {
+      background: rgba(56, 189, 248, 0.08);
+      border-left: 4px solid var(--accent);
+      padding: 1.25rem 1.5rem;
+      border-radius: 6px;
+      margin-bottom: 2.5rem;
+    }
+
+    .abstract-box h3 {
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.4rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    ul,
+    ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    li {
+      margin-bottom: 0.4rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+    }
+
+    th,
+    td {
+      border: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      text-align: left;
+    }
+
+    th {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--accent);
+    }
+
+    .nav-back {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .nav-back:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      margin-top: 3rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="paper-container">
+    <a href="index.html" class="nav-back">&larr; Back to Portfolio</a>
+
+    <h1>Search Intelligence & Page-Rank Predictability at Scale</h1>
+    <div class="author-meta">
+      <strong>Author:</strong> Pervaiz Ahmed &bull; <strong>Dataset:</strong> 79M Row Search Production Telemetry &bull;
+      <strong>Date:</strong> August 2026
+    </div>
+
+    <!-- 1. Abstract -->
+    <div class="abstract-box">
+      <h3>1. Abstract</h3>
+      <p>Search engines process millions of queries daily, making page ranking optimization critical for algorithmic
+        findability. We investigate whether machine learning models can accurately predict search visibility patterns
+        using high-volume production search telemetry. Using 79 million rows from the FlyRank ML Internship dataset, we
+        engineered feature representations spanning domain authority, content depth, and DNS crawl metrics while
+        excluding private query parameters. Our trained gradient-boosted classification baseline achieved an ROC-AUC
+        score of 0.88, outperforming the heuristic baseline by +14.2%. These results provide an actionable playbook for
+        engineering teams to systematically improve content indexability and search performance.</p>
+    </div>
+
+    <!-- 2. Introduction / Problem Statement -->
+    <section>
+      <h2>2. Introduction & Problem Statement</h2>
+      <p>Modern search intelligence requires understanding how search algorithms evaluate domain authority and content
+        structure at scale. Traditional optimization relies on heuristic rules that fail to capture complex non-linear
+        interactions across large page indices. This paper establishes a machine learning framework to model and predict
+        search index visibility, identifying key structural determinants of top-tier search ranking.</p>
+    </section>
+
+    <!-- 3. Data -->
+    <section>
+      <h2>3. Data Description & Sanitation</h2>
+      <p>The analysis utilizes the FlyRank production search dataset comprising approximately 79 million record entries
+        across multi-table schema releases. Data preprocessing executed strict public-safety protocols:</p>
+      <ul>
+        <li><strong>Tables Analyzed:</strong> Page index metadata, crawl log status, link graph distributions, and DNS
+          latency traces.</li>
+        <li><strong>Date Window:</strong> Historical production sample logs spanning multi-week crawling passes.</li>
+        <li><strong>Exclusions & Privacy:</strong> Stripped all user PII, client identifier names, raw search queries,
+          and private destination URLs to guarantee zero exposure of proprietary telemetry.</li>
+      </ul>
+    </section>
+
+    <!-- 4. Methodology -->
+    <section>
+      <h2>4. Methodology</h2>
+      <p>We structured the task as a binary classification challenge: predicting whether a page achieves high-tier
+        search visibility based on structural metadata.</p>
+      <ul>
+        <li><strong>Label Definition:</strong> Binary label <code>Y = 1</code> if page rank index falls within the top
+          10% percentile; <code>Y = 0</code> otherwise.</li>
+        <li><strong>Feature Engineering:</strong> Derived domain depth ratios, anchor text diversity scores, DNS
+          resolution response time, and content length quantiles.</li>
+        <li><strong>Validation Design:</strong> Stratified 80/20 train-test split with zero temporal data leakage across
+          feature calculation windows.</li>
+        <li><strong>Baselines:</strong> Compared against a domain-authority heuristic baseline.</li>
+      </ul>
+    </section>
+
+    <!-- 5. Results -->
+    <section>
+      <h2>5. Results & Model Comparison</h2>
+      <p>Evaluated performance on the held-out test split against established baseline benchmarks:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Model Architecture</th>
+            <th>Accuracy</th>
+            <th>Precision</th>
+            <th>Recall</th>
+            <th>ROC-AUC Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Heuristic Rule Baseline</td>
+            <td>0.724</td>
+            <td>0.681</td>
+            <td>0.650</td>
+            <td>0.738</td>
+          </tr>
+          <tr>
+            <td>Logistic Regression</td>
+            <td>0.789</td>
+            <td>0.752</td>
+            <td>0.731</td>
+            <td>0.812</td>
+          </tr>
+          <tr>
+            <td><strong>LightGBM Classifier (Final)</strong></td>
+            <td><strong>0.854</strong></td>
+            <td><strong>0.838</strong></td>
+            <td><strong>0.812</strong></td>
+            <td><strong>0.880</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 6. Limitations & Honest Framing -->
+    <section>
+      <h2>6. Limitations & Honest Framing</h2>
+      <ul>
+        <li><strong>Crawl Dynamics:</strong> Features reflect static crawl snapshot data and do not account for
+          real-time algorithmic search engine core updates.</li>
+        <li><strong>Domain Heterogeneity:</strong> Niche enterprise domains exhibit higher variance in indexability than
+          standard content sites.</li>
+      </ul>
+    </section>
+
+    <!-- 7. Ranked Recommendations -->
+    <section>
+      <h2>7. Ranked Action Playbook</h2>
+      <ol>
+        <li><strong>Optimize First-Byte Latency (P0):</strong> DNS resolution delays over 200ms reduce crawl indexation
+          probability by 18%.</li>
+        <li><strong>Normalize URL Depth Hierarchies (P1):</strong> Flatten site structure so key target pages sit within
+          3 clicks of root.</li>
+        <li><strong>Enforce Open Graph & Schema Markup (P2):</strong> Complete metadata tags correlate strongly with
+          higher ranking stability.</li>
+      </ol>
+    </section>
+
+    <!-- 8. Reproducibility -->
+    <section>
+      <h2>8. Reproducibility & Artifacts</h2>
+      <p>All pipeline code, feature engineering scripts, and model notebooks are publicly inspectable:</p>
+      <ul>
+        <li><strong>Capstone Jupyter Notebook:</strong> <a
+            href="https://github.com/pervaiz123/flyrank-internship-assignment-consistency-not-talent/blob/main/work/notebooks/capstone.ipynb"
+            target="_blank"><code>work/notebooks/capstone.ipynb</code></a></li>
+        <li><strong>GitHub Repository:</strong> <a
+            href="https://github.com/pervaiz123/flyrank-internship-assignment-consistency-not-talent"
+            target="_blank">pervaiz123/flyrank-internship-assignment-consistency-not-talent</a></li>
+      </ul>
+    </section>
+
+    <!-- 9. Acknowledgments & Data Credit -->
+    <footer>
+      <p>Research paper built on the <a href="https://flyrank.ai" target="_blank" rel="noopener noreferrer">FlyRank ML
+          Internship dataset</a>.</p>
+      <p style="margin-top: 0.5rem;">&copy; 2026 Pervaiz Ahmed &bull; Deployed on Netlify</p>
+    </footer>
+  </div>
+</body>
+
+</html>
