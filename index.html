@@ -12,7 +12,7 @@
             --accent: #38bdf8;
             --accent-hover: #0284c7;
             --text-main: #f8fafc;
-            --text-muted: #cbd5e1; /* Boosted for WCAG AAA compliance */
+            --text-muted: #cbd5e1;
             --tag-bg: #1e293b;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +56,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-height: 48px; /* Touch-friendly tap target */
+            min-height: 48px;
             padding: 0.75rem 1.25rem;
             border-radius: 8px;
             font-weight: 600;
@@ -89,7 +89,7 @@
             border-radius: 2px;
         }
 
-        /* Responsive Grid: Prevents Mobile Horizontal Scroll (min-width set to 280px) */
+        /* Responsive Grid */
         .grid-2 { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
@@ -101,6 +101,9 @@
             border-radius: 12px;
             padding: 1.25rem;
             transition: transform 0.2s ease, border-color 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         .card:hover { border-color: rgba(56, 189, 248, 0.4); }
 
@@ -133,7 +136,6 @@
             font-weight: bold;
         }
 
-        /* Mobile-Friendly Skill Tags */
         .skills-container { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
         .skill-tag {
             background-color: var(--tag-bg);
@@ -143,6 +145,17 @@
             font-size: 0.85rem;
             border: 1px solid var(--card-border);
         }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+        .project-link:hover { text-decoration: underline; }
 
         /* Accessible Touch Form */
         form { display: flex; flex-direction: column; gap: 1rem; }
@@ -156,7 +169,7 @@
             background-color: var(--bg);
             color: #fff;
             font-family: inherit;
-            font-size: 1rem; /* Disables auto-zoom on iOS Safari */
+            font-size: 1rem;
         }
         input:focus, textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2); }
         
@@ -173,17 +186,17 @@
     <div class="container">
         <!-- Hero Header -->
         <header>
-            <span class="badge">Available for ML &amp; Python Roles</span>
+            <span class="badge">Python ML Developer &bull; Scikit-Learn Specialist</span>
             <h1>Pervaiz Ahmed Brohi</h1>
-            <div class="hero-title">Python Developer &amp; Machine Learning Engineer</div>
+            <div class="hero-title">Machine Learning Engineer &amp; Python Developer</div>
             <p class="hero-desc">
                 Bridging data science with scalable business impact. Specialized in supervised machine learning, predictive modeling, feature engineering pipelines, and process automation. Combines core software engineering with 3+ years managing high-volume US operations.
             </p>
             <div class="cta-buttons">
                 <a href="#contact" class="btn btn-primary" aria-label="Navigate to contact section">Work With Me</a>
                 <a href="./resume.pdf" target="_blank" rel="noopener" class="btn btn-secondary" aria-label="Download CV Document">Download CV</a>
-                <a href="https://github.com/pervaiz123" target="_blank" rel="noopener" class="btn btn-secondary" aria-label="Visit GitHub Profile">GitHub</a>
-                <a href="https://www.linkedin.com/in/pervaiz-ahmed-/" target="_blank" rel="noopener" class="btn btn-secondary" aria-label="Visit LinkedIn Profile">LinkedIn</a>
+                <a href="https://github.com/pervaiz123" target="_blank" rel="noopener" class="btn btn-secondary" aria-label="Visit GitHub Profile">GitHub Profile</a>
+                <a href="https://www.linkedin.com/in/pervaiz-ahmed-/" target="_blank" rel="noopener" class="btn btn-secondary" aria-label="Visit LinkedIn Profile">LinkedIn Profile</a>
             </div>
         </header>
 
@@ -210,33 +223,37 @@
             <h2 class="section-title">Professional Experience</h2>
             <div class="grid-2">
                 <div class="card">
-                    <div class="job-header">
-                        <div>
-                            <div class="job-title">Machine Learning Engineer Intern</div>
-                            <div class="job-company">FlyRank AI</div>
+                    <div>
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Machine Learning Engineer Intern</div>
+                                <div class="job-company">FlyRank AI</div>
+                            </div>
+                            <div class="job-date">Jun 2026 – Present</div>
                         </div>
-                        <div class="job-date">Jun 2026 – Present</div>
+                        <ul class="points">
+                            <li>Developed and benchmarked supervised ML models using Scikit-Learn to optimize baseline accuracies across large datasets.</li>
+                            <li>Executed end-to-end data preprocessing, missing-value handling, and feature selection pipelines.</li>
+                            <li>Evaluated models using precision, recall, confusion matrices, and mean squared error (MSE) metrics.</li>
+                        </ul>
                     </div>
-                    <ul class="points">
-                        <li>Developed and benchmarked supervised ML models using Scikit-Learn to optimize baseline accuracies across large datasets.</li>
-                        <li>Executed end-to-end data preprocessing, missing-value handling, and feature selection pipelines.</li>
-                        <li>Evaluated models using precision, recall, confusion matrices, and mean squared error (MSE) metrics.</li>
-                    </ul>
                 </div>
 
                 <div class="card">
-                    <div class="job-header">
-                        <div>
-                            <div class="job-title">E-Commerce &amp; Operations Manager</div>
-                            <div class="job-company">Express Publishing LLC (USA)</div>
+                    <div>
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">E-Commerce &amp; Operations Manager</div>
+                                <div class="job-company">Express Publishing LLC (USA)</div>
+                            </div>
+                            <div class="job-date">Jan 2021 – Sep 2024</div>
                         </div>
-                        <div class="job-date">Jan 2021 – Sep 2024</div>
+                        <ul class="points">
+                            <li>Scaled monthly e-commerce revenue from $0 to $500,000+ through automated product tracking algorithms.</li>
+                            <li>Automated team workflow tracking systems, boosting operational output by 30%.</li>
+                            <li>Managed full-lifecycle customer query automation and inventory schemas for US stakeholders.</li>
+                        </ul>
                     </div>
-                    <ul class="points">
-                        <li>Scaled monthly e-commerce revenue from $0 to $500,000+ through automated product tracking algorithms.</li>
-                        <li>Automated team workflow tracking systems, boosting operational output by 30%.</li>
-                        <li>Managed full-lifecycle customer query automation and inventory schemas for US stakeholders.</li>
-                    </ul>
                 </div>
             </div>
         </section>
@@ -246,16 +263,22 @@
             <h2 class="section-title">Featured Machine Learning &amp; Software Projects</h2>
             <div class="grid-2">
                 <div class="card">
-                    <h3 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.1rem;">Student Record &amp; Data Analytics System</h3>
-                    <p style="color: var(--text-muted); font-size: 0.95rem;">
-                        Automated database management system built with Python and CSV persistence. Features error-handling algorithms, concurrent file-read protection, and statistical analysis reports.
-                    </p>
+                    <div>
+                        <h3 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.1rem;">Student Record &amp; Data Analytics System</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">
+                            Automated database management system built with Python and CSV persistence. Features error-handling algorithms, concurrent file-read protection, and statistical analysis reports.
+                        </p>
+                    </div>
+                    <a href="https://github.com/pervaiz123/flyrank-internship-assignment-consistency-not-talent" target="_blank" rel="noopener" class="project-link">View Repository on GitHub &rarr;</a>
                 </div>
                 <div class="card">
-                    <h3 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.1rem;">State-Aware Banking &amp; ATM Simulator</h3>
-                    <p style="color: var(--text-muted); font-size: 0.95rem;">
-                        Object-oriented menu-driven engine processing account balance checks, secure deposits, validation logic, and inter-account fund transfers with strict exception handling.
-                    </p>
+                    <div>
+                        <h3 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.1rem;">State-Aware Banking &amp; ATM Simulator</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">
+                            Object-oriented menu-driven engine processing account balance checks, secure deposits, validation logic, and inter-account fund transfers with strict exception handling.
+                        </p>
+                    </div>
+                    <a href="https://github.com/pervaiz123/flyrank-internship-assignment-consistency-not-talent" target="_blank" rel="noopener" class="project-link">View Repository on GitHub &rarr;</a>
                 </div>
             </div>
         </section>
