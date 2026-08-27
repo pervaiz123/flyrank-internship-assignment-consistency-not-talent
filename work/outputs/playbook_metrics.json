@@ -1,0 +1,9 @@
+{
+  "total_audited_pages": 1000,
+  "decaying_core_count": 444,
+  "striking_distance_count": 117,
+  "schema_missing_count": 59,
+  "thin_prune_count": 10,
+  "mean_priority_score": 58.85,
+  "highest_priority_score": 97.97
+}
